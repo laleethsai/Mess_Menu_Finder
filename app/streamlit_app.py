@@ -2,7 +2,7 @@ import streamlit as st
 from data_loader import get_menu
 from llm import get_nutrition
 
-st.title("🍽️ Smart Menu Analyzer")
+st.title("🍽️ Keerthana's Menu Analyzer")
 
 date = st.selectbox("Select Date", list(range(1, 31)))
 session = st.selectbox("Session", ["Breakfast", "Lunch", "Dinner"])
