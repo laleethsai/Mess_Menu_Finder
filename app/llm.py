@@ -1,11 +1,8 @@
-import os
+import streamlit as st
 import google.generativeai as genai
 
-# Get API key
-api_key = os.getenv("GOOGLE_API_KEY")
-
-if not api_key:
-    raise ValueError("GOOGLE_API_KEY is not set in environment")
+# Get API key from Streamlit secrets
+api_key = st.secrets["GOOGLE_API_KEY"]
 
 genai.configure(api_key=api_key)
 
