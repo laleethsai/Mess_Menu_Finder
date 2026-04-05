@@ -1,7 +1,13 @@
 import os
 import google.generativeai as genai
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Get API key
+api_key = os.getenv("GOOGLE_API_KEY")
+
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY is not set in environment")
+
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
@@ -20,6 +26,8 @@ def get_nutrition(menu_items):
     - Short explanation
     """
 
-    response = model.generate_content(prompt)
-
-    return response.text
+    try:
+        response = model.generate_content(prompt)
+        return response.text if response.text else "No response from model"
+    except Exception as e:
+        return f"Error generating response: {str(e)}"
